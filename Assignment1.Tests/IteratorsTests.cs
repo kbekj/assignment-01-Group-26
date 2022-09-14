@@ -14,26 +14,23 @@ int[] list2={6,7};
 var superList= new List<IEnumerable<int>>();
 superList.Add(list);
 superList.Add(list2);
-//var returnList= Iterators.Flatten<IEnumerable<IEnumerable<int>>>(superList);
-//List<int> flatList =superList.SelectMany(T=>T).ToList();
-//Console.WriteLine(String.Join(",", flatList));
 var flat=Iterators.Flatten(items:superList);
 
 //Assert
-Assert.Equal(new[]  {1,2,3,4,5}, flat);
+Assert.Equal(new[]  {1,2,3,4,6,7}, flat);
 
 }
 
 [Fact]
 public void filter_Test(){
-int[] evenlist={2,4};
+int[] evenlist={2,4,3};
 
 Predicate<int> even = Even;
     bool Even(int i) => i % 2 == 0;
 
 var isEven=Iterators.Filter(evenlist, Even);
 
-
+Assert.Equal( new List<int>{2,4} , isEven);
 }
 
 
